@@ -1,8 +1,8 @@
 CREATE TABLE customer (
   customer_id SERIAL PRIMARY KEY,
-  username VARCHAR(255) UNIQUE NOT NULL,
-  full_name VARCHAR(255) NOT NULL,
-  email VARCHAR(255) UNIQUE NOT NULL,
+  username VARCHAR(50) UNIQUE NOT NULL,
+  full_name VARCHAR(200) NOT NULL,
+  email VARCHAR(100) UNIQUE NOT NULL,
   phone VARCHAR(20)
 );
 
@@ -12,7 +12,7 @@ CREATE TABLE "order" (
   FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
   status BOOLEAN,
   cost DECIMAL(10, 2),
-  created_at DATE
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 );
 CREATE TABLE category (
   category_id SERIAL PRIMARY KEY,
@@ -42,9 +42,10 @@ CREATE TABLE payment (
   payment_id SERIAL PRIMARY KEY,
   order_id INT NOT NULL,
   FOREIGN KEY (order_id) REFERENCES "order"(order_id),
-  status BOOLEAN,
-  payment_date DATE,
+  is_completed BOOLEAN,
+  payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   payment_method VARCHAR(50)
 );
+
 
 
