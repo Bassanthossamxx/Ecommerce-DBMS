@@ -1,7 +1,7 @@
 Table customer {
   id serial [pk, unique]
-  username varchar(255) [not null, unique]
-  email varchar(255) [unique]
+  username varchar(50) [not null, unique]
+  email varchar(200) [unique]
   password text [not null]
   full_name varchar(255) [not null]
   phone varchar(20)
@@ -12,7 +12,7 @@ Table order {
   customer_id int [ref: > customer.id]
   status boolean
   cost decimal(10, 2)
-  created_at timestamp
+  created_at timestamp 
 }
 
 Table order_details {
@@ -27,14 +27,14 @@ Table payment {
   id serial [pk, unique]
   payment_method text [note: 'cash or online (Visa)']
   order_id int [ref: > order.id, unique]  //Ensure one-to-one relationship
-  status boolean
-  payment_date date
+  is_completed boolean
+  payment_date timestamp
 }
 
 Table product {
   id serial [pk, unique]
   category_id int [ref: > category.id]
-  name varchar(255) [not null]
+  name varchar(100) [not null]
   description varchar(255)
   stock_quantity int
   price decimal(10, 2)
@@ -42,5 +42,5 @@ Table product {
 
 Table category {
   id serial [pk, unique]
-  name varchar(255) [not null]
+  name varchar(100) [not null]
 }
