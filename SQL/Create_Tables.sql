@@ -16,7 +16,7 @@ CREATE TABLE "order" (
 );
 CREATE TABLE category (
   category_id SERIAL PRIMARY KEY,
-  name VARCHAR(255) NOT NULL
+  name VARCHAR(100) NOT NULL
 );
 CREATE TABLE product (
   product_id SERIAL PRIMARY KEY,
@@ -24,7 +24,7 @@ CREATE TABLE product (
   FOREIGN KEY (category_id) REFERENCES category(category_id),
   price DECIMAL(10, 2),
   stock_quantity INT,
-  name VARCHAR(255) NOT NULL,
+  name VARCHAR(100) NOT NULL,
   description VARCHAR(255)
 ); 
 CREATE TABLE order_details (
